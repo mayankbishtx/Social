@@ -1,1 +1,1 @@
-# Social - A Full-Stack Social Media App
+# Social - A Full-Stack Social Media Application
