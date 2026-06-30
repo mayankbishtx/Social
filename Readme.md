@@ -24,7 +24,7 @@ cd Social
 
 Create the required `.env` files for both the frontend and backend. Refer to the `.env.example` files if provided.
 
-### 3. Start the application
+### 3. Start the application using Docker 
 
 ```bash
 docker compose up --build

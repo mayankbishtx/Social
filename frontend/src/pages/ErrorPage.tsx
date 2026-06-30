@@ -1,7 +1,5 @@
 export default function ErrorPage() {
     return (
-        // 1. h-[calc(100vh-72px)] makes it fit perfectly below the navbar without scrolling
-        // 2. Removed the background color class so it blends naturally with whatever background your site has
         <div className="h-[calc(100vh-72px)] flex flex-col items-center justify-center text-sm max-md:px-4 pb-12">
             
             <h1 className="text-4xl md:text-5xl font-bold bg-linear-to-r from-white to-gray-500 bg-clip-text text-transparent">

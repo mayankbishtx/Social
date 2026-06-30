@@ -82,7 +82,7 @@ export default function Profile() {
     }
 
     if (loading) return <Loading />
-    if (!profile) return <div className="h-screen flex items-center justify-center text-5xl font-bold"> User not found</div>
+    if (!profile) return <div className="h-screen flex items-center justify-center text-5xl font-extrabold bg-linear-to-r from-white to-gray-500 bg-clip-text text-transparent"> User not found</div>
 
     return (
         <div className="max-w-xl mt-10 mx-auto p-4 shadow-2xl bg-mauve-50 rounded">

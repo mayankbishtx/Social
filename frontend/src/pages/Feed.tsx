@@ -71,7 +71,7 @@ export default function Feed() {
             <CreatePost onPostCreated={handlePostCreated} />
             {posts.map((post) => (
                 <div key={post._id} className="border rounded p-4">
-                        <p className="font-bold">{post.author.name}</p>
+                    <p className="font-bold">{post.author.name}</p>
                     <p>{post.content}</p>
                     {post.image && <img src={post.image} className="mt-2 rounded" />}
                     <button onClick={(() => handleLike(post._id, post.likes.includes(user!.id)))}>
