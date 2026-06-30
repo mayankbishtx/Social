@@ -3,7 +3,6 @@ import api from "../api/axios";
 import toast from "react-hot-toast";
 import type { Posts } from "../types";
 
-
 interface CreatePostProps {
     onPostCreated: (newPost: Posts) => void;
 }
@@ -12,17 +11,15 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
     const [content, setContent] = useState("");
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [posting, setPosting] = useState(false);
-    const [error, setError] = useState("");
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!content) {
-            setError("Post content is required");
+            toast.error("Post content is required")
             return;
         }
 
         setPosting(true);
-        setError("");
 
         try {
             const formData = new FormData();
@@ -37,7 +34,7 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
             toast.success("Post created");
 
         } catch {
-            setError("Failed to create post");
+            toast.error("Failed to create post");
         } finally {
             setPosting(false);
         }
@@ -70,8 +67,6 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
                     {posting ? "Posting..." : "Post"}
                 </button>
             </div>
-
-            {error && <p className="text-red-500 text-small">{error}</p>}
         </form>
     )
 }
