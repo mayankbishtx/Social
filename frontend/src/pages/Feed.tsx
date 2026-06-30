@@ -3,15 +3,8 @@ import api from "../api/axios";
 import { useAuth } from "../context/useAuth";
 import Loading from "../components/Loading";
 import CreatePost from "../components/CreatePost";
-
-interface Posts {
-    _id: string;
-    content: string;
-    image?: string;
-    author: { _id: string; name: string; avatar?: string };
-    likes: string[];
-    comments: { _id: string, text: string, user: string }[];
-}
+import timeAgo from "../utils/timeAgo";
+import type { Posts } from "../types";
 
 export default function Feed() {
 
@@ -71,7 +64,7 @@ export default function Feed() {
             <CreatePost onPostCreated={handlePostCreated} />
             {posts.map((post) => (
                 <div key={post._id} className="border rounded p-4">
-                    <p className="font-bold">{post.author.name}</p>
+                    <p className="font-bold">{post.author.name}   ·   <span className="text-gray-600 text-sm/6 font-mediump">{timeAgo(post.createdAt)}</span></p>
                     <p>{post.content}</p>
                     {post.image && <img src={post.image} className="mt-2 rounded" />}
                     <button onClick={(() => handleLike(post._id, post.likes.includes(user!.id)))}>

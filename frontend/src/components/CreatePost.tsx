@@ -1,18 +1,11 @@
 import { useState } from "react";
 import api from "../api/axios";
 import toast from "react-hot-toast";
+import type { Posts } from "../types";
 
-interface Post {
-    _id: string;
-    content: string;
-    image?: string;
-    author: { _id: string; name: string, avatar?: string };
-    likes: string[];
-    comments: { _id: string, text: string, user: string }[];
-}
 
 interface CreatePostProps {
-    onPostCreated: (newPost: Post) => void;
+    onPostCreated: (newPost: Posts) => void;
 }
 
 export default function CreatePost({ onPostCreated }: CreatePostProps) {
