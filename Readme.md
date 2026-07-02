@@ -1,6 +1,6 @@
-# Social - A Full-Stack Image Sharing Platform
+# Social - A Full-Stack Social Media Application
 
-A modern full-stack image sharing platform where users can connect, share posts, and interact with each other in real time.
+A modern full-stack social media application where users can connect, share posts, and interact with each other in real time.
 
 ## Features
 
@@ -24,13 +24,13 @@ cd Social
 
 Create the required `.env` files for both the frontend and backend. Refer to the `.env.example` files if provided.
 
-### 3. Start the application using Docker 
+### 3. Start the application using Docker:
 
 ```bash
 docker compose up --build
 ```
 
-### OR
+### OR Start with npm:
 
 -  cd backend -> npm install -> npm run dev
 -  cd frontend -> npm install -> npm run dev
