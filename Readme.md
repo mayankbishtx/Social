@@ -32,8 +32,10 @@ docker compose up --build
 
 ### OR Start with npm:
 
+```
 -  cd backend -> npm install -> npm run dev
 -  cd frontend -> npm install -> npm run dev
+```
 
 ### 4. Open the application
 

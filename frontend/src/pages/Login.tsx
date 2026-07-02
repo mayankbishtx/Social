@@ -37,6 +37,8 @@ export default function Login() {
 
     return (
         <div className="h-screen flex items-center justify-center gap-14">
+            <div className=" flex items-center flex-col rounded-xl p-10 py-25 shadow-amber-50 shadow-lg">
+                <h1 className="text-2xl font-bold text-white mb-8">Welcome back!</h1>
             <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                 <input
                     className="border border-white rounded p-2 w-67 dark:text-white"
@@ -77,5 +79,6 @@ export default function Login() {
                 </button>
             </form>
         </div>
+                    </div>
     )
 };

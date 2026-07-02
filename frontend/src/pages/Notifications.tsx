@@ -86,7 +86,7 @@ export default function Notifications() {
     if (loading) return <Loading />
 
     return (
-        <div className="max-w-xl mt-10 mx-auto p-4 space-y-3 shadow-lg bg-mauve-50 ">
+        <div className="max-w-xl mt-10 mx-auto p-4 space-y-3 shadow-lg bg-mauve-50 rounded">
             <button 
             onClick={markAllAsRead}
             className="bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded cursor-pointer text-white shadow-2xl">
