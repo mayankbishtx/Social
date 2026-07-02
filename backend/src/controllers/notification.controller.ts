@@ -13,10 +13,10 @@ export const getNotifications = async (req: AuthRequest, res: Response) => {
 
         const notifications = (
             await Notification.find({ recipient: currentUserId })
-            .sort({ createdAt: -1 })
+            .sort({ createdAt: -1 })  // -1 means descending order (newest first)
             .populate("sender", "name avatar")
             .populate("post", "content image")
-        ).filter(n => n.sender);   
+        ).filter(n => n.sender);  // keeps only items where sender is truthy (exist)
 
         res.status(200).json({ notifications });
 
