@@ -34,7 +34,9 @@ export const createPost = async (req: AuthRequest, res: Response) => {
             author: currentUserId,
             content,
             image: imageUrl || ""
-        })
+        });
+
+        await post.populate("author","avatar name");
 
         await redis.del(`feed:${currentUserId}`);
 
@@ -44,6 +46,7 @@ export const createPost = async (req: AuthRequest, res: Response) => {
         })
 
     } catch (error) {
+        logger.error(error);
         res.status(500).json({ message: "Internal server error" })
     }
 }
