@@ -36,7 +36,7 @@ export const createPost = async (req: AuthRequest, res: Response) => {
             image: imageUrl || ""
         });
 
-        await post.populate("author","avatar name");
+        await post.populate("author", "avatar name");
 
         await redis.del(`feed:${currentUserId}`);
 
@@ -90,6 +90,7 @@ export const getFeed = async (req: AuthRequest, res: Response) => {
         res.status(200).json({ posts });
 
     } catch (error) {
+        logger.error(error);
         res.status(500).json({ message: "Internal server error" })
     }
 }
@@ -110,6 +111,7 @@ export const getUserPosts = async (req: AuthRequest, res: Response) => {
         res.status(200).json({ posts });
 
     } catch (error) {
+        logger.error(error);
         res.status(500).json({ message: "Internal server error" })
     }
 }
@@ -143,13 +145,14 @@ export const deletePost = async (req: AuthRequest, res: Response) => {
         }
 
         await Post.findByIdAndDelete(postId);
-        
+
         await redis.del(`feed:${currentUserId}`);
 
         res.status(200).json({ message: "Post deleted successfully" });
 
 
     } catch (error) {
+        logger.error(error);
         res.status(500).json({ message: "Internal server error" })
     }
 }
@@ -195,6 +198,7 @@ export const likePost = async (req: AuthRequest, res: Response) => {
         res.status(200).json({ message: "Post liked successfully" });
 
     } catch (error) {
+        logger.error(error);
         res.status(500).json({ message: "Internal server error" });
     }
 }
@@ -227,6 +231,7 @@ export const unlikePost = async (req: AuthRequest, res: Response) => {
         res.status(200).json({ message: "Post unliked successfully" });
 
     } catch (error) {
+        logger.error(error);
         res.status(500).json({ message: "Internal server error" });
     }
 }
@@ -284,6 +289,7 @@ export const addComment = async (req: AuthRequest, res: Response) => {
         res.status(201).json({ message: "Comment added successfully", comments: post.comments });
 
     } catch (error) {
+        logger.error(error);
         res.status(500).json({ message: "Internal server error" });
     }
 }
@@ -329,6 +335,7 @@ export const deleteComment = async (req: AuthRequest, res: Response) => {
 
 
     } catch (error) {
+        logger.error(error);
         res.status(500).json({ message: "Internal server error" });
     }
 }

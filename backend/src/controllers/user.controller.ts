@@ -7,6 +7,7 @@ import { emitToUser } from "../socket";
 import { uploadToCloudinary } from "../utils/uploadToCloudinary";
 import redis from "../config/redis";
 import { generateAccessToken } from "../utils/generateToken";
+import logger from "../config/logger";
 
 export const followUser = async (req: AuthRequest, res: Response) => {
     try {
@@ -51,6 +52,7 @@ export const followUser = async (req: AuthRequest, res: Response) => {
         res.status(200).json({ message: "User followed successfully" });
 
     } catch (error) {
+        logger.error(error);
         res.status(500).json({ message: "Internal Server Error" })
     }
 }
@@ -84,6 +86,7 @@ export const unfollowUser = async (req: AuthRequest, res: Response) => {
         res.status(200).json({ message: "User unfollowed successfully" });
 
     } catch (error) {
+        logger.error(error);
         res.status(500).json({ message: "Internal Server Error" })
     }
 }
@@ -121,6 +124,7 @@ export const getUserProfile = async (req: AuthRequest, res: Response) => {
         });
 
     } catch (error) {
+        logger.error(error);
         res.status(500).json({ message: "Internal server error" })
     }
 }
@@ -181,6 +185,7 @@ export const updateProfile = async (req: AuthRequest, res: Response) => {
         });
 
     } catch (error) {
+        logger.error(error);
         res.status(500).json({ message: "Internal server error" })
     }
 }
@@ -191,18 +196,19 @@ export const searchUsers = async (req: AuthRequest, res: Response) => {
         const currentUserId = req.user?.id;
 
         if (!query || !query.trim()) {
-            res.status(400).json({ message: "Search query is required"});
+            res.status(400).json({ message: "Search query is required" });
             return;
         }
 
         const users = await User.find({
-            _id: { $ne: currentUserId},
-            username: { $regex: query, $options: "i" } 
+            _id: { $ne: currentUserId },
+            username: { $regex: query, $options: "i" }
         }).select("name username avatar").limit(10);
 
         res.status(200).json({ users });
-        
+
     } catch (error) {
+        logger.error(error);
         res.status(500).json({ message: "Internal Server Error" });
     }
 }

@@ -6,6 +6,7 @@ import type { AuthRequest } from "../types";
 import crypto from "crypto";
 import { sendEmail } from "../utils/sendEmail";
 import redis from "../config/redis";
+import logger from "../config/logger";
 
 export const register = async (req: Request, res: Response) => {
     try {
@@ -54,6 +55,7 @@ export const register = async (req: Request, res: Response) => {
         });
 
     } catch (error) {
+        logger.error(error);
         res.status(500).json({ message: "Internal Server Error" });
     }
 }
@@ -98,6 +100,7 @@ export const login = async (req: Request, res: Response) => {
         });
 
     } catch (error) {
+        logger.error(error);
         res.status(500).json({ message: "Internal Server Error" });
     }
 }
@@ -113,6 +116,7 @@ export const logout = async (req: Request, res: Response) => {
         res.status(200).json({ message: "Logout successfully" });
 
     } catch (error) {
+        logger.error(error);
         res.status(500).json({ message: "Internal server error" });
     }
 }
@@ -133,6 +137,7 @@ export const refreshToken = async (req: Request, res: Response) => {
         res.status(200).json({ accessToken: newAccessToken });
 
     } catch (error) {
+        logger.error(error);
         res.status(500).json({ message: "Internal server error" });
     }
 };
@@ -166,6 +171,7 @@ export const getMe = async (req: AuthRequest, res: Response) => {
         });
 
     } catch (error) {
+        logger.error(error);
         res.status(500).json({ message: "Internal server error" });
     }
 }
@@ -195,6 +201,7 @@ export const verifyEmail = async (req: Request, res: Response) => {
 
 
     } catch (error) {
+        logger.error(error);
         res.status(500).json({ message: "Internal Server error" });
     }
 }
