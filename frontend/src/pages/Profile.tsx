@@ -69,7 +69,7 @@ export default function Profile() {
         try {
             await api.delete(`/posts/${postId}`);
             setPosts(prevPosts => prevPosts.filter(post => post._id !== postId));
-            toast.success("Post deleted")
+            toast.success("Post deleted");
 
         } catch (error) {
             console.log(error);
@@ -90,7 +90,7 @@ export default function Profile() {
                     <h1 className="text-lg font-bold dark:text-white">{profile.name}</h1>
                     <p className="text-gray-500 dark:text-gray-100">@{profile.username}</p>
 
-                    <p className="text-gray-600 dark:text-white">{profile.bio}</p>
+                    <p className="text-gray-600 dark:text-gray-100">{profile.bio}</p>
                     <div className="flex gap-6 mt-3 dark:text-white">
                         <span>{profile.followers} Followers</span>
                         <span>{profile.following} Following</span>
@@ -104,7 +104,7 @@ export default function Profile() {
                     ) : (
                         <button
                             onClick={handleFollow}
-                            className="mt-4 w-fit bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
+                            className="mt-4 w-fit bg-black hover:bg-gray-800 cursor-pointer text-white dark:bg-white dark:text-black px-4 py-2 rounded">
                             {isFollowing ? "Unfollow" : "Follow"}
                         </button>
                     )}

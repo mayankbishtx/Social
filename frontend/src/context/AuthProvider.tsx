@@ -25,7 +25,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         syncTokenToAxios(token);
         localStorage.setItem("accessToken", token);
         localStorage.setItem("user", JSON.stringify(userData));
-
     }
 
     const logout = () => {
@@ -38,8 +37,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
 
     const updateUser = (userData: User) => {
-    setUser({...userData});
-};
+        setUser({...userData});
+    };
 
     useEffect(() => {
         if (accessToken) {
