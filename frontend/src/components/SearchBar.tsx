@@ -59,11 +59,11 @@ export default function SearchBar() {
                     if (!value.trim()) setResults([]);
                 }}
                 placeholder="Search Users..."
-                className="border rounded-full px-4 py-1 text-sm w-48 focus:outline-none focus:w-64 transition-all border-[#484843] dark:bg-gray-200"
+                className="border rounded-full px-4 py-1 text-sm w-48 focus:outline-none focus:w-54 transition-all dark:text-black border-[#484843] dark:bg-gray-200"
             />
 
             {showDropDown && (
-                <div className="absolute top-10 left-0 bg-white dark:bg-black dark:text-white border rounded-lg shadow-lg w-64 z-50">
+                <div className="absolute top-10 left-0 bg-white dark:bg-black dark:text-white border border-[#dcdec1] dark:border-[#363636] rounded-lg shadow-lg w-64 z-50">
                     {loading && (
                         <p className="text-sm gray-400 p-3">Searching...</p>
                     )}

@@ -86,7 +86,7 @@ export default function Notifications() {
     if (loading) return <Loading />
 
     return (
-        <div className="max-w-xl mt-10 mx-auto p-4 space-y-3 border border-[#d3dce1] dark:border-[#303336]">
+        <div className="max-w-xl lg:mt-10 mx-auto p-4 space-y-3 border-t md:border border-[#d3dce1] dark:border-[#303336]">
             
             <button 
             onClick={markAllAsRead}

@@ -63,9 +63,8 @@ export default function Feed() {
     if (loading) return <Loading />
 
     return (
-        <div className="mt-10  max-w-xl mx-auto p-2 space-y-4  dark:bg-black ">
-            <div className="rounded border border-[#d3dce1] dark:border-[#303336]">
-
+        <div className="lg:mt-10 max-w-xl mx-auto p-2 space-y-4  dark:bg-black">
+            <div>
                 <CreatePost onPostCreated={handlePostCreated} />
                 {posts.map((post) => {
                     const isLiked = post.likes.includes(user!.id);
@@ -73,7 +72,7 @@ export default function Feed() {
                         <div key={post._id} className="border border-[#d3dce1] dark:border-[#303336] p-4 dark:text-white">
                             <div className="flex flex-rol items-center gap-2 cursor-pointer " onClick={() => navigate(`/profile/${post.author._id}`)}>
                                 <img src={post.author.avatar} className="rounded-full size-10" />
-                                <span className="flex flex-rol items-center gap-1"><p className="text-sm font-medium hover:underline">{post.author.name}</p>·<span className="text-gray-600 text-sm/6 font-medium">{timeAgo(post.createdAt)}</span></span>
+                                <span className="flex flex-rol items-center gap-1"><p className="text-sm font-medium hover:underline">{post.author.name}</p>·<span className="text-gray-600 text-sm/6 font-medium dark:text-gray-200">{timeAgo(post.createdAt)}</span></span>
                             </div>
                             <p className="ml-12">{post.content}</p>
                             {post.image && <img src={post.image} className="mt-2 rounded-2xl border border-neutral-300 dark:border-[#303336]" />}
