@@ -10,7 +10,7 @@ import logger from "../config/logger";
 
 export const register = async (req: Request, res: Response) => {
     try {
-        const { name,username,  email, password } = req.body;
+        const { name, username, email, password } = req.body;
 
         const existingUser = await User.findOne({ email });
         if (existingUser) {
@@ -18,7 +18,7 @@ export const register = async (req: Request, res: Response) => {
             return;
         }
 
-        const existingUsername = await User.find({ username });
+        const existingUsername = await User.findOne({ username });
         if (existingUsername) {
             res.status(400).json({ message: "Username already exist" });
             return;
