@@ -18,6 +18,12 @@ export const register = async (req: Request, res: Response) => {
             return;
         }
 
+        const existingUsername = await User.find({ username });
+        if (existingUsername) {
+            res.status(400).json({ message: "Username already exist" });
+            return;
+        }
+
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const user = await User.create({
@@ -81,10 +87,12 @@ export const login = async (req: Request, res: Response) => {
         const accessToken = generateAccessToken({ id: user._id.toString() });
         const refreshToken = generateRefreshToken({ id: user._id.toString() });
 
+        const isProduction = process.env.NODE_ENV === "production";
+
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
-            secure: false,
-            sameSite: "strict",
+            secure: isProduction,
+            sameSite: isProduction ? "none" : "lax",
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
 
@@ -153,10 +161,12 @@ export const getMe = async (req: AuthRequest, res: Response) => {
 
         const newAccessToken = generateAccessToken({ id: user._id.toString() });
 
+        const isProduction = process.env.NODE_ENV === "production";
+
         res.cookie("accesstoken", newAccessToken, {
             httpOnly: true,
-            secure: false,
-            sameSite: "strict",
+            secure: isProduction,
+            sameSite: isProduction ? "none" : "lax",
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
 
