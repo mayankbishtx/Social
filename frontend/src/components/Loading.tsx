@@ -1,4 +1,5 @@
-export default function LoadingPage() {
+
+export default function Loading() {
     return (
         <div className="h-[calc(100vh-76px)] flex space-x-2 justify-center items-center pb-20 relative">
 
