@@ -87,15 +87,10 @@ export const login = async (req: Request, res: Response) => {
             }
         });
 
-    } catch (error: any) {
-    console.error("LOGIN ERROR:", error);
-
-    return res.status(500).json({
-        message: "Login failed",
-        error: error.message,
-        stack: error.stack
-    });
-}
+    } catch (error) {
+        logger.error(error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
 }
 
 export const logout = async (req: Request, res: Response) => {
