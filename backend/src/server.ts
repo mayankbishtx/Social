@@ -74,8 +74,6 @@ app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/notifications", notificationRoutes);
 
-initSocket(httpServer);
-
 const PORT = process.env.PORT || 3000;
 httpServer.listen(PORT, () => {
     logger.info(`Server is running on http://localhost:${PORT}`);
