@@ -17,14 +17,9 @@ import morgan from "morgan";
 import logger from "./config/logger";
 import "./config/redis";
 import mongoose from "mongoose";
+import { allowedOrigins } from "./config/cors";
 
 const app = express();
-
-app.get("/api/test", (req, res) => {
-    return res.status(200).json({
-        message: "Backend reached"
-    });
-});
 
 const httpServer = http.createServer(app);
 const io = initSocket(httpServer);
@@ -38,12 +33,6 @@ const apiLimiter = rateLimit({
 const morganStream = {
     write: (message: string) => logger.info(message.trim())
 };
-
-export const allowedOrigins = [
-  "http://localhost", 
-  "http://localhost:5173",
-  process.env.VERCEL_FRONTEND_URL,
-  ].filter((origin): origin is string => Boolean(origin));
 
 app.use(helmet());
 app.set("trust proxy", 1);

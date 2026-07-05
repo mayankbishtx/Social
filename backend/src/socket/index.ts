@@ -1,13 +1,13 @@
 import { Server } from "socket.io";
-import type { Server as HttpServer } from "http";
+import type { Server as HTTPServer } from "http";
 import logger from "../config/logger";
-import { allowedOrigins } from "../server";
+import { allowedOrigins } from "../config/cors"
 
 const userSocketMap = new Map<string, string>();
 
 let io: Server;
 
-export const initSocket = (httpServer: HttpServer): Server => {
+export const initSocket = (httpServer: HTTPServer): Server => {
     io = new Server(httpServer, {
         cors: {
             origin: allowedOrigins,    // had to correct this later
