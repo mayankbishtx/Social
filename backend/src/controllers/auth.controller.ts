@@ -3,8 +3,6 @@ import bcrypt from "bcryptjs"
 import User from "../models/user.model";
 import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from "../utils/generateToken";
 import type { AuthRequest } from "../types";
-import crypto from "crypto";
-import { sendEmail } from "../utils/sendEmail";
 import redis from "../config/redis";
 import logger from "../config/logger";
 
@@ -32,24 +30,6 @@ export const register = async (req: Request, res: Response) => {
             email,
             password: hashedPassword
         });
-
-        const rawToken = crypto.randomBytes(32).toString("hex");
-        const hashedToken = crypto.createHash("sha256").update(rawToken).digest("hex");
-
-        const expiry = new Date(Date.now() + 24 * 60 * 60 * 1000);
-
-        user.verificationToken = hashedToken;
-        user.verificationTokenExpiry = expiry;
-        await user.save();
-
-        const VerifyUrl = `http://localhost:3000/api/auth/verify-email/${rawToken}`;
-
-        await sendEmail(
-            user.email,
-            "Verify your email",
-            `<h2>Welcome</h2><p>Click below to verify your email:</p>
-            <a href="${VerifyUrl}">Verify Email</a>`
-        )
 
         res.status(201).json({
             message: "User created successfully",
@@ -183,35 +163,5 @@ export const getMe = async (req: AuthRequest, res: Response) => {
     } catch (error) {
         logger.error(error);
         res.status(500).json({ message: "Internal server error" });
-    }
-}
-
-export const verifyEmail = async (req: Request, res: Response) => {
-    try {
-        const token = req.params.token as string;
-
-        const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
-
-        const user = await User.findOne({
-            verificationToken: hashedToken,
-            verificationTokenExpiry: { $gt: new Date() }
-        }).select("+verificationToken +verificationTokenExpiry")
-
-        if (!user) {
-            res.status(400).json({ message: "Inavalid or Expired verification link" });
-            return;
-        }
-
-        user.isverified = true;
-        user.verificationToken = undefined;
-        user.verificationTokenExpiry = undefined;
-        await user.save();
-
-        res.status(200).json({ message: "Email verified successfully" });
-
-
-    } catch (error) {
-        logger.error(error);
-        res.status(500).json({ message: "Internal Server error" });
     }
 }

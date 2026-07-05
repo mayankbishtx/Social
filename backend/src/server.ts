@@ -30,7 +30,11 @@ const morganStream = {
     write: (message: string) => logger.info(message.trim())
 };
 
-export const allowedOrigins = ["http://localhost:5173", "http://localhost"];
+export const allowedOrigins = [
+  "http://localhost", 
+  "http://localhost:5173",
+  process.env.VERCEL_FRONTEND_URL,
+  ].filter((origin): origin is string => Boolean(origin));
 
 app.use(helmet());
 app.use(cors({

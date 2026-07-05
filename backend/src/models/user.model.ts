@@ -10,8 +10,6 @@ export interface IUser extends Document {
     followers: Types.ObjectId[];
     following: Types.ObjectId[];
     isverified: boolean;
-    verificationToken?: string;
-    verificationTokenExpiry?: Date;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -64,14 +62,6 @@ const UserSchema = new Schema<IUser>({
         isverified: {
             type: Boolean,
             default: false,
-        },
-        verificationToken: {
-            type: String,
-            select: false,
-        },
-        verificationTokenExpiry: {
-            type: Date,
-            select: false,
         },
     },
     {
