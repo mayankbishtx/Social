@@ -49,7 +49,7 @@ export default function Feed() {
                         likes: isLiked ? post.likes.filter((id) => id !== user!.id) : [...post.likes, user!.id]
                     };
                 })
-            );  
+            );
 
         } catch (error) {
             console.log(error);
