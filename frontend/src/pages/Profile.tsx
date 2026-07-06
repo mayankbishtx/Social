@@ -23,6 +23,7 @@ export default function Profile() {
     const [profile, setProfile] = useState<User | null>(null);
     const [posts, setPosts] = useState<Posts[]>([]);
     const [loading, setLoading] = useState(true);
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [isFollowing, setIsFollowing] = useState(false);
     const { user } = useAuth();
     const navigate = useNavigate();
@@ -106,7 +107,7 @@ export default function Profile() {
                     ) : (
                         <button
                             onClick={handleFollow}
-                            className="mt-4 w-fit bg-black hover:bg-gray-800 cursor-pointer text-white dark:bg-white dark:text-black px-4 py-2 rounded">
+                            className="mt-4 w-fit bg-black hover:bg-gray-800 cursor-pointer text-white dark:bg-white dark:hover:bg-gray-200 dark:text-black px-4 py-2 rounded">
                             {isFollowing ? "Unfollow" : "Follow"}
                         </button>
                     )}
@@ -129,9 +130,14 @@ export default function Profile() {
                                 </button> : " "}
 
                         </div>
-                        {post.image && <img src={post.image} className="mt-2 rounded-2xl border border-[#dcdec1] dark:border-[#2c2c2d]" />}
+                        {post.image && <img src={post.image} onClick={() => setSelectedImage(post.image!)} className="cursor-pointer mt-2 rounded-2xl border border-[#dcdec1] dark:border-[#2c2c2d]" />}
                     </div>
                 ))}
+                {selectedImage && (
+                    <div onClick={() => setSelectedImage(null)} className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center">
+                        <img src={selectedImage} className="max-w-[80%] max-h-[80%] object-contain rounded-2xl" />
+                    </div>
+                )}
             </div>
         </div>
     )
