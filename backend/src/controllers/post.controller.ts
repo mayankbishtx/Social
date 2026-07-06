@@ -101,7 +101,7 @@ export const getUserPosts = async (req: AuthRequest, res: Response) => {
 
         const user = await User.findOne({ username });
 
-        if (!user ) {
+        if (!user) {
             res.status(404).json({ message: "User not found" });
             return;
         }

@@ -31,17 +31,17 @@ export const followUser = async (req: AuthRequest, res: Response) => {
         await User.findByIdAndUpdate(currentUserId, { $addToSet: { following: targetUser._id } });
         await User.findByIdAndUpdate(targetUserId, { $addToSet: { followers: currentUserId } });
 
-            await Notification.create({
-                recipient: targetUser._id,
-                sender: currentUserId,
-                type: "follow"
-            });
+        await Notification.create({
+            recipient: targetUser._id,
+            sender: currentUserId,
+            type: "follow"
+        });
 
-            emitToUser(targetUserId, "notification", {
-                type: "follow",
-                sender: currentUserId,
-                message: "Someone started follwing you"
-            });
+        emitToUser(targetUserId, "notification", {
+            type: "follow",
+            sender: currentUserId,
+            message: "Someone started follwing you"
+        });
 
         await redis.del(`feed:${currentUserId}`);
 
