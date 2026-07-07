@@ -59,7 +59,7 @@ export default function SearchBar() {
                     if (!value.trim()) setResults([]);
                 }}
                 placeholder="Search Users..."
-                className="border rounded-full px-4 py-1 text-sm w-48 focus:outline-none focus:w-54 transition-all dark:text-black border-[#484843] dark:bg-gray-200"
+                className="border rounded-full px-4 py-1 text-sm w-40 focus:outline-none focus:w-44 transition-all dark:text-black border-[#484843] dark:bg-gray-200"
             />
 
             {showDropDown && (

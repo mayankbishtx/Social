@@ -16,7 +16,7 @@ export default function Navbar() {
         <>
             <div className="backdrop-blur-2xl hidden md:flex max-w-2xl mx-auto sticky top-8 border border-[#dcdec1] bg-white dark:bg-black dark:border-[#484843] p-3 items-center justify-between px-8 shadow rounded-lg">
                 <div className="font-bold text-xl cursor-pointer dark:text-white" onClick={() => navigate("/")}>
-                    Social
+                    Socialhive
                 </div>
 
                 <SearchBar />

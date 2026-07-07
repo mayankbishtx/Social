@@ -3,6 +3,7 @@ import { useAuth } from "../context/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../api/axios";
 import toast from "react-hot-toast";
+import type { AxiosError } from "axios";
 
 export default function Login() {
 
@@ -20,19 +21,32 @@ export default function Login() {
         setLoading(true);
 
         try {
-            const { data } = await api.post("/auth/login", { email, password });
-            login(data.user, data.accessToken);
+            const response = await api.post("/auth/login", { email, password });
+            login(response.data.user, response.data.accessToken);
             navigate("/");
-            toast.success(`Welcome Back! ${data.user.name}`);
+            toast.success(`Welcome Back! ${response.data.user.name}`);
 
         } catch (err) {
-            console.log(err);
-            setError("Invalid Email or Password");
+            const error = err as AxiosError<{error: string, retryAfter: number}>;
 
+            if (error.response?.status === 429) {
+                const retryAfter = error.response.data?.retryAfter;
+                setError (
+                    retryAfter 
+                    ? `Too many attempts. try again in ${Math.ceil(retryAfter / 60)} minutes.`
+                    : "Too many attemps. Please try again later"
+                );
+
+            } else if (error.response?.status === 401) {
+                setError("Incorrect email or password");
+                
+            } else {
+                setError("Something went wrong. Please try again.");
+            }
+            
         } finally {
             setLoading(false);
         }
-
     }
 
     return (
