@@ -1,4 +1,4 @@
-# Social - A Full-Stack Social Media Application
+# Socialhive - A Full-Stack Social Media Application
 
 A modern full-stack social media application where users can connect, share posts, and interact with each other in real time.
 
@@ -16,7 +16,7 @@ A modern full-stack social media application where users can connect, share post
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/mayankbisht01/Social.git
+git clone https://github.com/mayankbisht01/Socialhive.git
 cd Social
 ```
 
