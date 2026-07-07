@@ -13,6 +13,7 @@ export default function createRateLimiter({ maxRequest, windowSeconds, keyPrefix
     return async function rateLimiter(req: Request, res: Response, next: NextFunction) {
         const ip = req.ip;
         const key = `${keyPrefix}${ip}`;
+        console.log(ip);
 
         try {
             const current = await redisClient.incr(key);
