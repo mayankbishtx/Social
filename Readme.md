@@ -22,7 +22,7 @@ cd Social
 
 ### 2. Configure environment variables
 
-Create the required `.env` files for both the frontend and backend. Refer to the `.env.example` files if provided.
+Create the required `.env` files for both the frontend and backend. Refer to the `.env.example` files.
 
 ### 3. Start the application using Docker:
 

@@ -38,13 +38,17 @@ api.interceptors.response.use((response) => response, async (error) => {
             const newAccessToken = data.accessToken;
 
             setAccessToken(newAccessToken);
+            localStorage.setItem("accessToken", newAccessToken);
 
             originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
 
-            return api(originalRequest);
+            const response = await api(originalRequest);
+
+            return response;
 
         } catch (refreshError) {
             setAccessToken(null);
+             localStorage.removeItem("accessToken");
             return Promise.reject(refreshError);
         }
     }
