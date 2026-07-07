@@ -117,19 +117,19 @@ export default function Profile() {
                 {posts.map((post) => (
                     <div key={post._id} className="border-t -mx-4 border-[#ced5d9] dark:border-[#303336] p-4">
                         <div className="flex flex-row justify-between">
-                            <div className="flex flex-col">
-
-                                <p className="font-bold dark:text-white">{post.author.name} · <span className="text-gray-600 text-sm/6 font-mediump dark:text-gray-100">{timeAgo(post.createdAt)}</span></p>
-                                <p className="dark:text-white">{post.content}</p>
+                            <div className="flex flex-row items-center">
+                                <img src={user?.avatar} className="rounded-full size-9" />
+                                <p className="ml-2 font-bold dark:text-white">{post.author.name} · <span className="text-gray-600 text-sm/6 font-mediump dark:text-gray-100">{timeAgo(post.createdAt)}</span></p>
                             </div>
                             {user!.username === username ?
                                 <button
-                                    onClick={(() => deletePost(post._id))}
-                                    className="px-1 py-1 rounded cursor-pointer text-black dark:text-white">
+                                onClick={(() => deletePost(post._id))}
+                                className="px-1 py-1 rounded cursor-pointer text-black dark:text-white">
                                     <Delete />
                                 </button> : " "}
 
                         </div>
+                                <p className="ml-11 dark:text-white">{post.content}</p>
                         {post.image && <img src={post.image} onClick={() => setSelectedImage(post.image!)} className="mt-2 rounded-2xl border border-[#dcdec1] dark:border-[#2c2c2d]" />}
                     </div>
                 ))}

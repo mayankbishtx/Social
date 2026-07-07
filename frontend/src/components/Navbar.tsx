@@ -24,20 +24,20 @@ export default function Navbar() {
                 <div className="flex flex-row gap-6">
                     <button
                         onClick={() => navigate("/")}
-                        className={`cursor-pointer px-2 py-2 border rounded-full dark:border-[#8e8e85] dark:bg-black ${location.pathname === '/' ? 'bg-gray-100 dark:bg-gray-500' : ''}`}>
+                        className={`cursor-pointer px-2 py-2 border rounded-full dark:border-[#8e8e85] dark:bg-black ${location.pathname === '/' ? 'bg-gray-100 dark:bg-gray-700' : ''}`}>
                         <House size={18} className="dark:text-white" />
                     </button>
 
                     <button
                         onClick={() => navigate(`/profile/${user!.username}`)}
-                        className={`cursor-pointer border px-2 py-2 rounded-full dark:border-[#8e8e85] dark:bg-black ${location.pathname === `/profile/${user!.username}` ? 'bg-gray-100 dark:bg-gray-500' : ''}`}>
+                        className={`cursor-pointer border px-2 py-2 rounded-full dark:border-[#8e8e85] dark:bg-black ${location.pathname === `/profile/${user!.username}` ? 'bg-gray-100 dark:bg-gray-700' : ''}`}>
                         <User size={18} className="dark:text-white" />
                     </button>
 
 
                     <button
                         onClick={() => navigate("/notifications")}
-                        className={`cursor-pointer px-2 py-2 rounded-full border dark:border-[#8e8e85] dark:bg-black ${location.pathname === '/notifications' ? 'bg-gray-100 dark:bg-gray-500' : ''}`}>
+                        className={`cursor-pointer px-2 py-2 rounded-full border dark:border-[#8e8e85] dark:bg-black ${location.pathname === '/notifications' ? 'bg-gray-100 dark:bg-gray-700' : ''}`}>
                         <Bell size={18} className="dark:text-white " />
                     </button>
 
