@@ -127,7 +127,7 @@ export const refreshToken = async (req: Request, res: Response) => {
 
     } catch (error) {
         logger.error(error);
-        res.status(500).json({ message: "Internal server error" });
+        res.status(401).json({ message: "Invalid or expired refresh token" });
     }
 };
 
