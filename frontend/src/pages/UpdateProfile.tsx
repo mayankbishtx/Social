@@ -22,8 +22,8 @@ export default function UpdateProfile() {
 
         try {
             const formData = new FormData();
-            formData.append("name", name)
-            formData.append("bio", bio)
+            if (name) formData.append("name", name);
+            if (bio) formData.append("bio", bio);
             if (avatar) formData.append("avatar", avatar);
 
             const res = await api.put("/users/me", formData);
@@ -65,7 +65,7 @@ export default function UpdateProfile() {
                 value={bio}
                 onChange={(e) => setBio(e.target.value)}
                 placeholder="Bio"
-                className="w-full border rounded p-2 resize-none shadow-md  dark:text-white dark:border-white"
+                className="w-full border rounded p-2 resize-none shadow-md dark:text-white dark:border-white"
                 rows={3}
             />
 
