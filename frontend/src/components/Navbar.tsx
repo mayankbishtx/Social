@@ -30,7 +30,7 @@ export default function Navbar() {
 
                     <button
                         onClick={() => navigate(`/profile/${user!.username}`)}
-                        className={`cursor-pointer border px-2 py-2 rounded-full dark:border-[#8e8e85] dark:bg-black ${location.pathname === `/profile/${user!.username}` ? 'bg-gray-100 dark:bg-gray-700' : ''}`}>
+                        className={`cursor-pointer border px-2 py-2 rounded-full dark:border-[#8e8e85] dark:bg-black ${location.pathname === `/profile/${user?.username}` ? 'bg-gray-100 dark:bg-gray-700' : ''}`}>
                         <User size={18} className="dark:text-white" />
                     </button>
 
