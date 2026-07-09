@@ -52,7 +52,7 @@ export default function Notifications() {
             await api.put("/notifications/read-all");
             setNotifications([]);
             toast.success("All posts are marked as read");
-    
+
         } catch (error) {
             console.log(error);
             toast.success("Failed to mark all as read");
@@ -88,13 +88,13 @@ export default function Notifications() {
     return (
         <div className="max-w-xl text-center lg:mt-10 mx-auto p-4 space-y-3 border-t md:border-t border-[#d3dce1] dark:border-[#303336]">
 
-            { notifications.length > 0 ? 
-            <button 
-            onClick={markAllAsRead}
-            className=" px-3 py-2 rounded bg-black shadow-sm text-white hover:bg-gray-800 dark:bg-white dark:hover:bg-gray-100 dark:text-black">
-                Mark All As Read
-            </button> : <div className="flex justify-center items-center mt-80 text-3xl font-bold bg-linear-to-r from-black to-gray-400 dark:from-white dark:to-gray-400 bg-clip-text text-transparent "> No Notifications Found</div>}
-            
+            {notifications.length > 0 ?
+                <button
+                    onClick={markAllAsRead}
+                    className=" px-3 py-2 rounded bg-black shadow-sm text-white hover:bg-gray-800 dark:bg-white dark:hover:bg-gray-100 dark:text-black">
+                    Mark All As Read
+                </button> : <div className="flex justify-center items-center mt-80 text-3xl font-bold bg-linear-to-r from-black to-gray-400 dark:from-white dark:to-gray-400 bg-clip-text text-transparent "> No Notifications Found</div>}
+
             {notifications.map((n) => (
                 <div
                     key={n._id}

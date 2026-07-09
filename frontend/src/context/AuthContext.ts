@@ -13,7 +13,7 @@ export interface AuthContextType {
     accessToken: string | null;
     authLoading: boolean;
     login: (user: User, token: string) => void;
-    logout: () => void; 
+    logout: () => Promise<void>; 
     updateUser: (updatedUser: User) => void;
 }
 

@@ -7,18 +7,22 @@ import toast from "react-hot-toast";
 export default function UpdateProfile() {
 
     const { user, updateUser } = useAuth();
-    const navigate = useNavigate();
-
     const [name, setName] = useState(user?.name || "");
     const [bio, setBio] = useState("");
     const [avatar, setAvatar] = useState<File | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
         setError("");
+
+        if (!name && !bio && !avatar) {
+            toast.error("Nothing to update");
+            return;
+        }
 
         try {
             const formData = new FormData();

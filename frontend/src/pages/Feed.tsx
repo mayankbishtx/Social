@@ -12,7 +12,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 export default function Feed() {
 
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
-    const { user } = useAuth();
+    const { user, authLoading } = useAuth();
     const navigate = useNavigate();
     const queryClient = useQueryClient();
 
@@ -27,6 +27,7 @@ export default function Feed() {
     })
 
     const handleLike = async (postId: string, isLiked: boolean) => {
+        if (!user) return;
         try {
             if (isLiked) {
                 await api.delete(`/posts/${postId}/unlike`);
@@ -42,7 +43,7 @@ export default function Feed() {
 
                     return {
                         ...post,
-                        likes: isLiked ? post.likes.filter((id) => id !== user!.id) : [...post.likes, user!.id]
+                        likes: isLiked ? post.likes.filter((id) => id !== user.id) : [...post.likes, user.id]
                     };
                 })
             );
@@ -61,15 +62,16 @@ export default function Feed() {
         );
     };
 
-    if (isLoading) return <Loading />
+    if (authLoading || isLoading) return <Loading />
+    if (!user) return null;
 
     return (
         <div className="lg:mt-10 max-w-xl mx-auto p-2 space-y-4  dark:bg-black">
             <div>
                 <CreatePost onPostCreated={handlePostCreated} />
                 {posts.map((post) => {
-                    const isLiked = post.likes.includes(user!.id);
-                    return (
+                    const isLiked = post.likes.includes(user.id);
+                    return (    
                         <div key={post._id} className="border border-[#d3dce1] dark:border-[#303336] p-4 dark:text-white">
                             <div className="flex flex-rol items-center gap-2">
                                 <img src={post.author.avatar} className="rounded-full size-10" />

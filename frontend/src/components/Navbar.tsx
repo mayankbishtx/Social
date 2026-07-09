@@ -8,9 +8,11 @@ import { useState } from "react";
 export default function Navbar() {
 
     const navigate = useNavigate();
-    const { user, logout } = useAuth();
+    const { user, logout, authLoading } = useAuth();
     const { isDark, toggleTheme } = useTheme();
     const [menuOpen, setMenuOpen] = useState(false);
+
+    if (authLoading || !user) return null;
 
     return (
         <>
@@ -29,8 +31,8 @@ export default function Navbar() {
                     </button>
 
                     <button
-                        onClick={() => navigate(`/profile/${user!.username}`)}
-                        className={`cursor-pointer border px-2 py-2 rounded-full dark:border-[#8e8e85] dark:bg-black ${location.pathname === `/profile/${user?.username}` ? 'bg-gray-100 dark:bg-gray-700' : ''}`}>
+                        onClick={() => navigate(`/profile/${user.username}`)}
+                        className={`cursor-pointer border px-2 py-2 rounded-full dark:border-[#8e8e85] dark:bg-black ${location.pathname === `/profile/${user.username}` ? 'bg-gray-100 dark:bg-gray-700' : ''}`}>
                         <User size={18} className="dark:text-white" />
                     </button>
 
@@ -42,10 +44,10 @@ export default function Navbar() {
                     </button>
 
                     <button
-                        onClick={() => {
+                        onClick={async () => {
                             const confirmed = window.confirm("Are you sure you want to logout?");
                             if (confirmed) {
-                                logout();
+                                await logout();
                                 navigate("/login");
                             }
                         }}
@@ -81,18 +83,18 @@ export default function Navbar() {
                             <button onClick={() => { navigate("/"); setMenuOpen(false); }}>
                                 Home
                             </button>
-                            <button onClick={() => { navigate(`/profile/${user!.username}`); setMenuOpen(false); }}>
+                            <button onClick={() => { navigate(`/profile/${user.username}`); setMenuOpen(false); }}>
                                 Profile
                             </button>
                             <button onClick={() => { navigate("/notifications"); setMenuOpen(false); }}>
                                 Notifications
                             </button>
-                            <button onClick={() => {
-                                const confirm = window.confirm("Are you sure u want to logout?")
-                                if (confirm) {
-                                    logout();
+                            <button onClick={async () => {
+                                const confirmed = window.confirm("Are you sure u want to logout?")
+                                if (confirmed) {
+                                    await logout();
+                                    navigate("/login");
                                 }
-                                navigate("/login");
                             }}>
                                 Logout
                             </button>

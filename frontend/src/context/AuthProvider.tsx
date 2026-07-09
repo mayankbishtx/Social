@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { AuthContext, type User } from "./AuthContext";
 import api, { setAccessToken as syncTokenToAxios, setAccessTokenChangeHandler } from "../api/axios";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<User | null>(() => {
@@ -15,7 +16,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     });
 
     const [accessToken, setAccessToken] = useState<string | null>(null);
-
     const [authLoading, setAuthLoading] = useState(true);
 
     useEffect(() => {
@@ -30,18 +30,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 setAccessToken(data.accessToken);
                 syncTokenToAxios(data.accessToken);
 
-                localStorage.setItem(
-                    "accessToken",
-                    data.accessToken
-                );
-            } catch {
+                setUser(data.user);
+
+                localStorage.setItem("accessToken",data.accessToken);
+                localStorage.setItem("user",JSON.stringify(data.user));
+ 
+            } catch (error) {
+                if (axios.isAxiosError(error) && error.response?.status === 401) {
                 setAccessToken(null);
                 syncTokenToAxios(null);
+                setUser(null);
 
                 localStorage.removeItem("accessToken");
                 localStorage.removeItem("user");
+                }
 
-                setUser(null);
             } finally {
                 setAuthLoading(false);
             }
@@ -78,7 +81,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
 
     const updateUser = (userData: User) => {
-        setUser({ ...userData });
+        setUser(userData);
+        localStorage.setItem("user", JSON.stringify(userData));
     };
 
     return (

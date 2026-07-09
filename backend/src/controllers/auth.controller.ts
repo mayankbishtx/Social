@@ -121,9 +121,25 @@ export const refreshToken = async (req: Request, res: Response) => {
 
         const decoded = verifyRefreshToken(token);
 
-        const newAccessToken = generateAccessToken({ id: decoded.id });
+        const user = await User.findById(decoded.id).select("name username email avatar");
 
-        res.status(200).json({ accessToken: newAccessToken });
+        if (!user) {
+            res.status(401).json({ message: "User not found" })
+            return;
+        }
+
+        const newAccessToken = generateAccessToken({ id: user._id.toString() });
+
+        res.status(200).json({ 
+            accessToken: newAccessToken,
+            user: {
+                id: user._id,
+                name: user.name,
+                username: user.username,
+                email: user.email,
+                avatar: user.avatar
+            }
+         });
 
     } catch (error) {
         logger.error(error);

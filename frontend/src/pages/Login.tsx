@@ -27,23 +27,23 @@ export default function Login() {
             toast.success(`Welcome Back! ${response.data.user.name}`);
 
         } catch (err) {
-            const error = err as AxiosError<{error: string, retryAfter: number}>;
+            const error = err as AxiosError<{ error: string, retryAfter: number }>;
 
             if (error.response?.status === 429) {
                 const retryAfter = error.response.data?.retryAfter;
-                setError (
-                    retryAfter 
-                    ? `Too many attempts. try again in ${Math.ceil(retryAfter / 60)} minutes.`
-                    : "Too many attemps. Please try again later"
+                setError(
+                    retryAfter
+                        ? `Too many attempts. try again in ${Math.ceil(retryAfter / 60)} minutes.`
+                        : "Too many attemps. Please try again later"
                 );
 
             } else if (error.response?.status === 401) {
                 setError("Incorrect email or password");
-                
+
             } else {
                 setError("Something went wrong. Please try again.");
             }
-            
+
         } finally {
             setLoading(false);
         }

@@ -15,9 +15,6 @@ export const createPost = async (req: AuthRequest, res: Response) => {
         const currentUserId = req.user?.id;
         const { content } = req.body;
 
-        console.log("content:", content);
-console.log("file:", !!req.file);
-
         if (!currentUserId) {
             res.status(401).json({ message: "Unauthorised" });
             return;
@@ -50,7 +47,6 @@ console.log("file:", !!req.file);
 
     } catch (error) {
         logger.error(error);
-        console.error("CREATE POST ERROR:", error);
         res.status(500).json({ message: "Internal server error" })
     }
 }
