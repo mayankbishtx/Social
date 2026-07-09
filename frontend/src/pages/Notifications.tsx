@@ -86,7 +86,7 @@ export default function Notifications() {
     if (loading) return <Loading />
 
     return (
-        <div className="pt-14 md:pt-0 max-w-xl text-center lg:mt-10 mx-auto p-4 space-y-3 border-t md:border-t border-[#d3dce1] dark:border-[#303336]">
+        <div className="max-w-xl text-center lg:mt-10 mx-auto p-4 space-y-3 border-t md:border-t border-[#d3dce1] dark:border-[#303336]">
 
             {notifications.length > 0 ?
                 <button

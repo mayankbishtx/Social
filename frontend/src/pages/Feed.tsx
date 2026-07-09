@@ -66,7 +66,7 @@ export default function Feed() {
     if (!user) return null;
 
     return (
-        <div className="pt-14 md:pt-0 md:mt-10 max-w-xl mx-auto p-2 space-y-4  dark:bg-black">
+        <div className=" md:pt-0 md:mt-10 max-w-xl mx-auto p-2 space-y-4  dark:bg-black">
             <div>
                 <CreatePost onPostCreated={handlePostCreated} />
                 {posts.map((post) => {
@@ -78,7 +78,7 @@ export default function Feed() {
                                 <span className="flex flex-rol items-center gap-1">
                                     <p
                                         onClick={() => navigate(`/profile/${post.author.username}`)}
-                                        className="text-sm font-medium hover:underline cursor-pointer">
+                                        className="text-sm font-bold hover:underline cursor-pointer">
                                         {post.author.name}
                                     </p>
                                     ·<span className="text-gray-600 text-sm/6 font-medium dark:text-gray-200">
@@ -86,7 +86,7 @@ export default function Feed() {
                                     </span>
                                 </span>
                             </div>
-                            <p className="ml-12">{post.content}</p>
+                            <p className="ml-12 font-medium">{post.content}</p>
                             {post.image && <img src={post.image} onClick={() => setSelectedImage(post.image!)} className="mt-2 rounded-2xl border border-neutral-300 dark:border-[#303336]" />}
 
                             <button onClick={() => handleLike(post._id, isLiked)} className="flex items-center gap-1 mt-2">

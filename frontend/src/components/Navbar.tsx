@@ -60,7 +60,7 @@ export default function Navbar() {
                 </div>
             </div>
 
-            <nav className="md:hidden fixed top-0 left-0 right-0 z-50 bg-white">
+            <nav className="md:hidden sticky top-0 z-50 bg-white dark:bg-black">
                 <div className="flex items-center justify-between px-4 py-3 dark:text-white">
                     <span className="text-xl font-bold">Socialhive</span>
                     <SearchBar />

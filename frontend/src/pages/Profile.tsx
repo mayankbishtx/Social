@@ -114,11 +114,11 @@ export default function Profile() {
     }
 
     return (
-        <div className="pt-14 md:pt-0 max-w-xl md:mt-10 mx-auto p-4 border rounded border-[#d3dce1] dark:border-[#303336]">
+        <div className="max-w-xl md:mt-10 mx-auto p-4 border rounded border-[#d3dce1] dark:border-[#303336]">
             <div className="flex gap-6 items-start mt-2">
                 <img src={profile.avatar || "/default-avatar.png"} className="w-26 h-26 rounded-full" />
                 <div className="flex flex-col flex-1">
-                    <h1 className="text-lg font-medium dark:text-white">{profile.name}</h1>
+                    <h1 className="text-lg font-bold dark:text-white">{profile.name}</h1>
                     <p className="text-gray-500 dark:text-gray-100">@{profile.username}</p>
 
                     <p className="text-gray-600 dark:text-gray-100">{profile.bio}</p>
@@ -157,7 +157,7 @@ export default function Profile() {
                                 </button> : null}
 
                         </div>
-                                <p className="ml-11 dark:text-white">{post.content}</p>
+                                <p className="ml-11 font-medium dark:text-white">{post.content}</p>
                         {post.image && <img src={post.image} onClick={() => setSelectedImage(post.image!)} className="mt-2 rounded-2xl border border-[#dcdec1] dark:border-[#2c2c2d]" />}
                     </div>
                 ))}
