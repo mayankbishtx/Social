@@ -60,9 +60,9 @@ export default function Navbar() {
                 </div>
             </div>
 
-            <nav className="md:hidden">
+            <nav className="md:hidden fixed top-0 left-0 right-0 z-50 bg-white">
                 <div className="flex items-center justify-between px-4 py-3 dark:text-white">
-                    <span className="text-xl font-bold">Social</span>
+                    <span className="text-xl font-bold">Socialhive</span>
                     <SearchBar />
 
                     <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>

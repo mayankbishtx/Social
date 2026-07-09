@@ -16,7 +16,7 @@ export default function Feed() {
     const navigate = useNavigate();
     const queryClient = useQueryClient();
 
-    const { data:posts = [], isLoading } = useQuery<Posts[]>({
+    const { data: posts = [], isLoading } = useQuery<Posts[]>({
         queryKey: ["feed"],
         queryFn: async () => {
             const response = await api.get("/posts/feed");
@@ -38,14 +38,14 @@ export default function Feed() {
             queryClient.setQueryData<Posts[]>(
                 ["feed"],
                 (prevPosts = []) =>
-                prevPosts.map((post) => {
-                    if (post._id !== postId) return post;
+                    prevPosts.map((post) => {
+                        if (post._id !== postId) return post;
 
-                    return {
-                        ...post,
-                        likes: isLiked ? post.likes.filter((id) => id !== user.id) : [...post.likes, user.id]
-                    };
-                })
+                        return {
+                            ...post,
+                            likes: isLiked ? post.likes.filter((id) => id !== user.id) : [...post.likes, user.id]
+                        };
+                    })
             );
 
         } catch (error) {
@@ -66,19 +66,19 @@ export default function Feed() {
     if (!user) return null;
 
     return (
-        <div className="lg:mt-8 max-w-xl mx-auto p-2 space-y-4  dark:bg-black">
+        <div className="pt-14 md:pt-0 md:mt-10 max-w-xl mx-auto p-2 space-y-4  dark:bg-black">
             <div>
                 <CreatePost onPostCreated={handlePostCreated} />
                 {posts.map((post) => {
                     const isLiked = post.likes.includes(user.id);
-                    return (    
+                    return (
                         <div key={post._id} className="rounded border border-[#d3dce1] dark:border-[#303336] p-4 dark:text-white">
-                            <div className="flex flex-rol items-center gap-2">
-                                <img src={post.author.avatar} className="rounded-full size-10" />
+                            <div className="flex flex-row items-center gap-2">
+                                <img src={post.author.avatar || "/default-avatar.png"} className="rounded-full size-10" />
                                 <span className="flex flex-rol items-center gap-1">
                                     <p
                                         onClick={() => navigate(`/profile/${post.author.username}`)}
-                                        className="text-sm font-bold hover:underline cursor-pointer ">
+                                        className="text-sm font-medium hover:underline cursor-pointer">
                                         {post.author.name}
                                     </p>
                                     ·<span className="text-gray-600 text-sm/6 font-medium dark:text-gray-200">
