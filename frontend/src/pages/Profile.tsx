@@ -147,7 +147,7 @@ export default function Profile() {
                         <div className="flex flex-row justify-between">
                             <div className="flex flex-row items-center">
                                 <img src={post?.author?.avatar} className="rounded-full size-9" />
-                                <p className="ml-2 font-bold dark:text-white">{post.author.name} · <span className="text-gray-600 text-sm/6 font-mediump dark:text-gray-100">{timeAgo(post.createdAt)}</span></p>
+                                <p className="ml-2 font-bold dark:text-white">{post.author.name} · <span className="text-gray-600 text-sm/6 font-medium dark:text-gray-200">{timeAgo(post.createdAt)}</span></p>
                             </div>
                             {user?.username === username ?
                                 <button

@@ -76,13 +76,13 @@ export default function SearchBar() {
 
                 {query && (
                     <button type="button" onClick={clearSearch} className="shrink-0 p-1 rounded-full text-gray-400 hover:text-gray-700 hover:bg-gray-200 dark:hover:text-white dark:hover:bg-gray-700 transition-colors cursor-pointer">
-                        <X/>
+                        <X size={14}/>
                     </button>
                 )}
 
         </div>
             {showDropDown && (
-                <div className="absolute top-10 left-0 w-72 overflow-y-auto bg-white dark:bg-black border border-gray-200 dark:border-[#303336] rounded-lg shadow-xl p-2 z-50">
+                <div className="absolute top-10 left-0 w-60 overflow-y-auto bg-white dark:bg-black border border-gray-200 dark:border-[#303336] rounded-lg shadow-xl p-2 z-50">
                     {loading && (
                         <div className="px-3 py-4">
                             <p className="text-sm text-gray-400 p-3">Searching...</p>
