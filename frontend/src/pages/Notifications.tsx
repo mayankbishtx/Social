@@ -40,7 +40,7 @@ export default function Notifications() {
         try {
             await api.put(`/notifications/${id}/read`);
             setNotifications((prev) => prev.filter((n) => n._id !== id));
-            toast.success("Notification is marked as read");
+            toast.success("Notification is mark as read");
         } catch (error) {
             console.log(error);
             toast.error("Failed to mark as read");
@@ -55,7 +55,7 @@ export default function Notifications() {
 
         } catch (error) {
             console.log(error);
-            toast.success("Failed to mark all as read");
+            toast.success("Failed to marked all as read");
         }
     }
 
@@ -86,12 +86,12 @@ export default function Notifications() {
     if (loading) return <Loading />
 
     return (
-        <div className="max-w-xl text-center lg:mt-10 mx-auto p-4 space-y-3 border-t md:border-t border-[#d3dce1] dark:border-[#303336]">
+        <div className="max-w-xl text-center lg:mt-10 mx-auto p-4 space-y-3 border-t border-[#d3dce1] dark:border-[#303336]">
 
             {notifications.length > 0 ?
                 <button
                     onClick={markAllAsRead}
-                    className=" px-3 py-2 rounded bg-black shadow-sm text-white hover:bg-gray-800 dark:bg-white dark:hover:bg-gray-100 dark:text-black">
+                    className="px-4 py-2 rounded cursor-pointer bg-black shadow-sm text-white hover:bg-gray-800 dark:bg-white dark:hover:bg-gray-100 dark:text-black">
                     Mark All
                 </button> : <div className="flex justify-center items-center mt-80 text-3xl font-bold bg-linear-to-r from-black to-gray-400 dark:from-white dark:to-gray-400 bg-clip-text text-transparent "> No Notifications Found</div>}
 
@@ -99,7 +99,7 @@ export default function Notifications() {
                 <div
                     key={n._id}
                     onClick={(() => markAsRead(n._id))}
-                    className={`p-4 rounded shadow-md cursor-pointer ${n.isRead ? "bg-white" : "bg-blue-50"}`}>
+                    className={`p-4 rounded cursor-pointer border border-[#d3dce1] dark:text-white dark:bg-black dark:border-[#303336] ${n.isRead ? "" : "bg-gray-50"}`}>
                     <p>
                         <span className="font-bold">{n.sender?.name ?? "Unknown User"}</span>{" "}
                         {n.type === "like" && "liked your post"}
