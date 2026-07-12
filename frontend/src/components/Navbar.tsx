@@ -18,7 +18,7 @@ export default function Navbar() {
         <>
             <div className="backdrop-blur-xl hidden md:flex w-[95%] max-w-4xl mx-auto sticky top-6 z-50 border border-gray-200 bg-white/90 dark:bg-black/90 dark:border-[#303336] py-3 items-center px-6 shadow rounded-2xl">
                 <div className="font-bold text-xl cursor-pointer dark:text-white shrink-0 mr-8" onClick={() => navigate("/")}>
-                    Socialhive
+                    🐝 Socialhive
                 </div>
 
                 <div className="w-56 shrink-0">
@@ -28,8 +28,8 @@ export default function Navbar() {
 
                 <div className="flex items-center gap-2 ml-auto">
                     <button
-                        onClick={() => navigate("/")}
-                        className={`cursor-pointer px-4 py-2 text-sm font-medium rounded-lg transition-colors dark:text-white hover:bg-gray-100 dark:hover:bg-[#1d1f20] ${location.pathname === '/' ? 'bg-gray-100 dark:bg-[#1d1f20]' : ""}`}>
+                        onClick={() => navigate("/home")}
+                        className={`cursor-pointer px-4 py-2 text-sm font-medium rounded-lg transition-colors dark:text-white hover:bg-gray-100 dark:hover:bg-[#1d1f20] ${location.pathname === '/home' ? 'bg-gray-100 dark:bg-[#1d1f20]' : ""}`}>
                         Home
                     </button>
 
@@ -68,7 +68,7 @@ export default function Navbar() {
 
             <nav className="md:hidden sticky top-0 z-50 bg-white dark:bg-black">
                 <div className="flex items-center justify-between px-4 py-3 dark:text-white">
-                    <span className="text-xl font-bold" onClick={() => navigate("/")}>Socialhive</span>
+                    <span className="text-xl font-bold" onClick={() => navigate("/")}>🐝 Socialhive</span>
                     <SearchBar />
 
                     <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
@@ -86,7 +86,7 @@ export default function Navbar() {
                 {menuOpen && (
                     <>
                         <div className="md:hidden flex flex-col gap-3 px-4 pb-4 relative z-50 font-medium border-t border-[#dcdec1] dark:text-white dark:border-gray-700">
-                            <button onClick={() => { navigate("/"); setMenuOpen(false); }}>
+                            <button onClick={() => { navigate("/home"); setMenuOpen(false); }}>
                                 Home
                             </button>
                             <button onClick={() => { navigate(`/profile/${user.username}`); setMenuOpen(false); }}>

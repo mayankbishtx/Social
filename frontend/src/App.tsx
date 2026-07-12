@@ -13,6 +13,7 @@ import { Toaster } from "react-hot-toast";
 import { Analytics } from "@vercel/analytics/react";
 import { lazy, Suspense } from "react";
 import Loading from "./components/Loading";
+import LandingPage from "./pages/LandingPage";
 
 const Notifications = lazy(() => import("./pages/Notifications"));
 
@@ -42,6 +43,12 @@ export default function App() {
           } />
 
           <Route path="/" element={
+            <PublicRoute>
+              <LandingPage />
+            </PublicRoute>
+          } />
+
+          <Route path="/home" element={
             <ProtectedRoute>
               <Feed />
             </ProtectedRoute>

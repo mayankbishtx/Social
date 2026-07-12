@@ -9,7 +9,7 @@ export default function ProtectedRoute({ children }: Props) {
     if (authLoading) return <Loading/>
     
     if (!accessToken) {
-        return <Navigate to="/login" replace />
+        return <Navigate to="/" replace />
     }
     return children;
 } 

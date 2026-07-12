@@ -5,7 +5,7 @@ import type { Props } from "../types";
 export default function PublicRoute({ children }: Props) {
     const { accessToken } = useAuth();
 
-    if (accessToken) return <Navigate to="/" replace />
+    if (accessToken) return <Navigate to="/home" replace />
 
     return children;
 }
