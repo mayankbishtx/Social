@@ -48,7 +48,7 @@ export default function Login() {
     }
 
     return (
-        <div className="h-screen flex items-center justify-center gap-14 bg-linear-to-br from-slate-50 via-blue-50 to-sky-100">
+        <div className="h-screen flex items-center justify-center gap-14 bg-linear-to-br from-slate-50 via-blue-50 to-sky-100 dark:from-neutral-900 dark:via-gray-400 dark:to-gray-400">
             <div className=" flex items-center flex-col rounded-xl p-10 py-25">
                 <h1 className="text-2xl font-semibold text-black mb-8 dark:text-white">Welcome back!</h1>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-3">

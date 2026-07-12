@@ -7,7 +7,7 @@ export default function LandingPage() {
 
     return (
         <>
-        <div className="relative min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-sky-100 dark:from-neutral-950 dark:to-blue-950">
+        <div className="relative min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-sky-100 dark:from-neutral-900 dark:via-gray-400 dark:to-gray-400">
             <a
                 href="https://github.com/mayankbishtx/socialhive" 
                 target="_blank"
