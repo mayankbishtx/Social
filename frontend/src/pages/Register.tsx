@@ -43,11 +43,11 @@ export default function Register() {
 
     return (
         <div className="h-screen flex items-center justify-center gap-14 bg-linear-to-br from-slate-50 via-blue-50 to-sky-100 dark:from-neutral-900 dark:via-gray-400 dark:to-gray-400">
-            <div className="flex flex-col items-center px-9 py-18 lg:px-18 lg:py-30 rounded-2xl">
-                <h1 className="text-2xl text-black font-bold mb-8 dark:text-white">Create an account</h1>
+            <div className="flex flex-col items-center px-9 py-18 lg:px-18 lg:py-30 rounded-2xl border-2 border-blue-100 bg-white/70 shadow-xl">
+                <h1 className="text-3xl text-black font-semibold mb-8 dark:text-white">Create an account</h1>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                     <input
-                        className="border-2 border-neutral-300 dark:border-white rounded p-2 w-67 text-black dark:text-white outline-none"
+                        className="border-2 border-neutral-300 dark:border-white rounded-md p-2 w-67 text-gray-800 dark:text-white outline-none focus:ring-1 focus:ring-blue-400 focus:border-blue-400"
                         type="text"
                         autoComplete="current-username"
                         value={name}
@@ -58,7 +58,7 @@ export default function Register() {
                     />
 
                     <input
-                        className="border-2 border-neutral-300 dark:border-white rounded p-2 w-67 text-black dark:text-white outline-none"
+                        className="border-2 border-neutral-300 dark:border-white rounded-md p-2 w-67 text-gray-800 dark:text-white outline-none focus:ring-1 focus:ring-blue-400 focus:border-blue-400"
                         type="text"
                         autoComplete="current-username"
                         value={username}
@@ -69,7 +69,7 @@ export default function Register() {
                     />
 
                     <input
-                        className="border-2 border-neutral-300 dark:border-white rounded p-2 w-67 text-black dark:text-white outline-none"
+                        className="border-2 border-neutral-300 dark:border-white rounded-md p-2 w-67 text-gray-800 dark:text-white outline-none focus:ring-1 focus:ring-blue-400 focus:border-blue-400"
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -79,7 +79,7 @@ export default function Register() {
                     />
 
                     <input
-                        className="border-2 border-neutral-300 dark:border-white font-sans rounded p-2 w-67 text-black dark:text-white outline-none"
+                        className="border-2 border-neutral-300 dark:border-white font-sans rounded-sm p-2 w-67 text-gray-800 dark:text-white outline-none focus:ring-1 focus:ring-blue-400 focus:border-blue-400"
                         type="password"
                         autoComplete="current-password"
                         value={password}
@@ -91,7 +91,7 @@ export default function Register() {
 
                     <p className="ml-5 text-sm text-taupe-500 hover:text-taupe-600 dark:hover:text-gray-300">
                         Already have an account?&nbsp;
-                        <Link to="/login" className="text-black dark:text-white hover:underline">
+                        <Link to="/login" className="text-blue-500 hover:text-blue-600 dark:text-white hover:underline">
                             Login
                         </Link>
                     </p>
@@ -99,8 +99,8 @@ export default function Register() {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="mt-4 p-2 w-35 self-center border rounded-md cursor-pointer 
-                    bg-black hover:bg-gray-900 text-white dark:bg-white dark:hover:bg-gray-200 dark:text-black transition-all duration-200 ease-in-out hover:translate-y-0.5 hover:shadow-lg">
+                        className="mt-4 p-2 self-center border rounded-xl cursor-pointer w-full
+                    bg-blue-500 hover:bg-blue-600 text-white dark:bg-white dark:hover:bg-gray-200 dark:text-black transition-all duration-200 ease-in-out hover:translate-y-0.5 hover:shadow-lg">
                         {loading ? "Registering..." : "Register"}
                     </button>
                 </form>

@@ -63,7 +63,7 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
                     type="file"
                     accept="image/*"
                     onChange={(e) => setImageFile(e.target.files?.[0] || null)}
-                    className="ml-13 text-sm border rounded p-1 border-[#d3dce1] dark:border-[#303336] w-55 shadow-sm cursor-pointer"
+                    className="ml-11 text-sm border rounded p-1 border-[#d3dce1] dark:border-[#303336] w-55 shadow-2xs cursor-pointer"
                 />
 
                 <button
