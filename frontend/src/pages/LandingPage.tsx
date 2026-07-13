@@ -12,7 +12,7 @@ export default function LandingPage() {
         <>
         <div className="relative min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-sky-100 dark:from-black dark:via-black dark:to-black dark:text-white">
             <div onClick={toggleTheme} className="absolute top-10 right-62 rounded-full px-4 py-4 flex items-center dark:text-white cursor-pointer transition-all duration-200 hover:translate-y-0.5">
-                {isDark ? <Sun size={18}/> : <Moon size={18}/>}
+                {isDark ? <Sun size={22}/> : <Moon size={22}/>}
             </div>
             <a
                 href="https://github.com/mayankbishtx/socialhive" 
