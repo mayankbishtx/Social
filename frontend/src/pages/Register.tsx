@@ -42,12 +42,12 @@ export default function Register() {
     };
 
     return (
-        <div className="h-screen flex items-center justify-center gap-14 bg-linear-to-br from-slate-50 via-blue-50 to-sky-100 dark:from-neutral-800 dark:via-neutral-800 dark:to-neutral-800">
+        <div className="h-screen flex items-center justify-center gap-14 dark:bg-neutral-900 dark:text-white">
             <div className="flex flex-col items-center px-9 py-18 lg:px-18 lg:py-30">
                 <h1 className="text-3xl text-black font-semibold mb-8 dark:text-white">Create an account</h1>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                     <input
-                        className="border-2 border-neutral-300 dark:border-white rounded-md p-2 w-67 text-gray-800 dark:text-white outline-none focus:ring-1 focus:ring-blue-400 focus:border-blue-400"
+                        className="border-2 border-neutral-300 dark:border-white rounded-md p-2 w-67 text-gray-800 dark:text-white outline-none focus:ring-1 focus:ring-black focus:border-black dark:focus:ring-white dark:focus:border-white"
                         type="text"
                         autoComplete="current-username"
                         value={name}
@@ -58,7 +58,7 @@ export default function Register() {
                     />
 
                     <input
-                        className="border-2 border-neutral-300 dark:border-white rounded-md p-2 w-67 text-gray-800 dark:text-white outline-none focus:ring-1 focus:ring-blue-400 focus:border-blue-400"
+                        className="border-2 border-neutral-300 dark:border-white rounded-md p-2 w-67 text-gray-800 dark:text-white outline-none focus:ring-1 focus:ring-black focus:border-black dark:focus:ring-white dark:focus:border-white"
                         type="text"
                         autoComplete="current-username"
                         value={username}
@@ -69,7 +69,7 @@ export default function Register() {
                     />
 
                     <input
-                        className="border-2 border-neutral-300 dark:border-white rounded-md p-2 w-67 text-gray-800 dark:text-white outline-none focus:ring-1 focus:ring-blue-400 focus:border-blue-400"
+                        className="border-2 border-neutral-300 dark:border-white rounded-md p-2 w-67 text-gray-800 dark:text-white outline-none focus:ring-1 focus:ring-black focus:border-black dark:focus:ring-white dark:focus:border-white"
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -79,7 +79,7 @@ export default function Register() {
                     />
 
                     <input
-                        className="border-2 border-neutral-300 dark:border-white font-sans rounded-sm p-2 w-67 text-gray-800 dark:text-white outline-none focus:ring-1 focus:ring-blue-400 focus:border-blue-400"
+                        className="border-2 border-neutral-300 dark:border-white font-sans rounded-sm p-2 w-67 text-gray-800 dark:text-white outline-none focus:ring-1 focus:ring-black focus:border-black dark:focus:ring-white dark:focus:border-white"
                         type="password"
                         autoComplete="current-password"
                         value={password}
@@ -89,7 +89,7 @@ export default function Register() {
                         disabled={loading}
                     />
 
-                    <p className="ml-5 text-sm text-taupe-500 hover:text-taupe-600 dark:hover:text-gray-300">
+                    <p className="ml-5 text-sm text-taupe-500 hover:text-taupe-600 dark:text-neutral-400 dark:hover:text-gray-300">
                         Already have an account?&nbsp;
                         <Link to="/login" className="text-blue-500 hover:text-blue-600 hover:underline">
                             Login
@@ -100,7 +100,7 @@ export default function Register() {
                         type="submit"
                         disabled={loading}
                         className="mt-4 p-2 self-center border rounded-xl cursor-pointer w-full
-                    bg-blue-500 hover:bg-blue-600 text-white dark:text-black transition-all duration-200 ease-in-out hover:translate-y-0.5 hover:shadow-lg">
+                    bg-black hover:bg-neutral-800 text-white dark:bg-white dark:hover:bg-gray-100 dark:text-black transition-all duration-200 ease-in-out hover:translate-y-0.5 hover:shadow-lg">
                         {loading ? "Registering..." : "Register"}
                     </button>
                 </form>

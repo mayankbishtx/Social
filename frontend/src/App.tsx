@@ -14,6 +14,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { lazy, Suspense } from "react";
 import Loading from "./components/Loading";
 import LandingPage from "./pages/LandingPage";
+import ThemeButton from "./components/ThemeButton";
 
 const Notifications = lazy(() => import("./pages/Notifications"));
 
@@ -26,6 +27,7 @@ export default function App() {
       <Toaster />
 
       <BrowserRouter>
+        <ThemeButton />
 
         {accessToken && <Navbar />}
 
@@ -74,7 +76,11 @@ export default function App() {
             </ProtectedRoute>
           } />
 
-          <Route path="*" element={<ErrorPage />} />
+          <Route path="*" element={
+            <ProtectedRoute>
+              <ErrorPage />
+            </ProtectedRoute>
+          } />
         </Routes>
 
       </BrowserRouter>
