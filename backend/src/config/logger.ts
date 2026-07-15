@@ -11,13 +11,8 @@ const transports: winston.transport[] = [
 
 if (process.env.NODE_ENV !== "production") {
     transports.push(
-        new winston.transports.File({
-            filename: "logs/error.log",
-            level: "error"
-        }),
-        new winston.transports.File({
-            filename: "logs/combined.log"
-        })
+        new winston.transports.File({ filename: "logs/error.log", level: "error" }),
+        new winston.transports.File({ filename: "logs/combined.log" })
     );
 }
 
