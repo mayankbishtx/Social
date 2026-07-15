@@ -2,7 +2,7 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export default async function notifyNotifySignup(user: any) {
+export default async function notifyUserSignup(user: any) {
     await resend.emails.send({
         from: "onboarding@resend.dev",
         to: process.env.ADMIN_EMAIL!,
