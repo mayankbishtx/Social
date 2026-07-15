@@ -49,7 +49,7 @@ const UserSchema = new Schema<IUser>({
         },
         avatar: {
             type: String,
-            default: "",
+            default: "https://i.pinimg.com/736x/f5/47/d8/f547d800625af9056d62efe8969aeea0.jpg",
         },
         followers: [{
             type: Schema.Types.ObjectId,
