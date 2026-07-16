@@ -14,14 +14,44 @@ export default function Navbar() {
     const audioRef = useRef(new Audio("/sounds/electic_button.mp3"));
 
     function playSound() {
-        audioRef.current.currentTime = 0
+        audioRef.current.currentTime = 0;
         audioRef.current.play();
     }
 
-    function handleClick() {
-        playSound();
-        toggleTheme();
-    }
+    const handleThemeToggle = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        if (!document.startViewTransition) {
+            toggleTheme();
+            playSound();
+            return;
+        }
+
+        const x = e.clientX;
+        const y = e.clientY;
+
+        document.documentElement.style.setProperty("--x", `${x}px`);
+        document.documentElement.style.setProperty("--y", `${y}px`);
+
+        const transition = document.startViewTransition(() => {
+            toggleTheme();
+            playSound();
+        });
+
+        await transition.ready;
+
+        document.documentElement.animate(
+            {
+                clipPath: [
+                    `circle(0px at ${x}px ${y}px)`,
+                    `circle(150vmax at ${x}px ${y}px)`,
+                ],
+            },
+            {
+                duration: 600,
+                easing: "ease-in-out",
+                pseudoElement: "::view-transition-new(root)",
+            }
+        );
+    };
 
     if (authLoading || !user) return null;
 
@@ -69,10 +99,10 @@ export default function Navbar() {
                         Logout
                     </button>
 
-                    <div className="h-6 w-px bg-gray-200 dark:bg-gray-700 mx-1"/>
+                    <div className="h-6 w-px bg-gray-200 dark:bg-gray-700 mx-1" />
 
-                    <button onClick={handleClick} className="cursor-pointer p-2.5 rounded-full dark:text-white hover:bg-gray-100 dark:hover:bg-[#1d1f20] transition-colors">
-                        {isDark ? <Sun size={18}/> : <Moon size={18}/>}
+                    <button onClick={handleThemeToggle} className="cursor-pointer p-2.5 rounded-full dark:text-white hover:bg-gray-100 dark:hover:bg-[#1d1f20] transition-colors">
+                        {isDark ? <Sun size={18} /> : <Moon size={18} />}
                     </button>
                 </div>
             </div>
@@ -115,7 +145,7 @@ export default function Navbar() {
                             }}>
                                 Logout
                             </button>
-                            <button onClick={handleClick}>
+                            <button onClick={handleThemeToggle}>
                                 {isDark ? "Light Mode" : "Dark Mode"}
                             </button>
 
