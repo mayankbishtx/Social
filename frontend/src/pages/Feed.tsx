@@ -66,7 +66,7 @@ export default function Feed() {
     if (!user) return null;
 
     return (
-        <div className=" md:pt-0 md:mt-10 max-w-xl mx-auto p-2 space-y-4  dark:bg-black">
+        <div className="md:pt-0 md:mt-10 max-w-xl mx-auto p-2 space-y-4 dark:bg-black">
             <div>
                 <CreatePost onPostCreated={handlePostCreated} />
                 {posts.map((post) => {

@@ -96,7 +96,7 @@ export default function SearchBar() {
                                 key={user._id}
                                 onClick={() => handleSelect(user.username)
                             }
-                            className="flex items-center gap-3 p-2.5 w-full rounded-xl text-left hover:bg-gray-100 dark:hover:bg-gray-[#1d1f29] transition-colors cursor-pointer"
+                            className="flex items-center gap-3 p-2.5 w-full rounded-xl text-left hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
                             >
                             <img src={user.avatar || "./default-avatar.png"} className="w-10 h-10 rounded-full object-cover shrink-0" />
                             <div>
