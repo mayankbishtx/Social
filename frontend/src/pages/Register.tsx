@@ -42,7 +42,7 @@ export default function Register() {
     };
 
     return (
-        <div className="h-screen flex items-center justify-center gap-14 bg-linear-to-br from-slate-100 to dark:bg-linear-to-br dark:from-neutral-600 dark:text-white">
+        <div className="h-screen flex items-center justify-center gap-14 bg-linear-to-br from-slate-100 to dark:bg-linear-to-br dark:from-neutral-900 dark:text-white">
             <div className="flex flex-col items-center px-9 py-18 lg:px-18 lg:py-30">
                 <h1 className="text-3xl text-black font-semibold mb-8 dark:text-white">Create an account</h1>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-3">

@@ -6,7 +6,7 @@ export default function LandingPage() {
 
     return (
         <>
-            <div className="relative min-h-screen bg-linear-to-br from-slate-100 to dark:bg-linear-to-br dark:from-neutral-600 dark:text-white">
+            <div className="relative min-h-screen bg-linear-to-br from-slate-100 to dark:bg-linear-to-br dark:from-neutral-900 dark:text-white">
                 <div className="min-h-screen flex flex-col items-center justify-center gap-7 tracking-wide">
                     <div className="mr-13 text-5xl md:text-6xl font-bold">
                         <span className="sm:text-4xl md:text-5xl">🐝</span> Socialhive
